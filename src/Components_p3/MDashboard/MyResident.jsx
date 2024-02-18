@@ -281,7 +281,7 @@ export default function MyResident() {
         <tr>
           
           <th colspan="2"> التاريخ </th>
-          <td>08/12/2023</td>
+          <td> {fatora.created_at}</td>
         </tr>
         <tr>
           

@@ -316,10 +316,7 @@ export default function RDashboard () {
         </tr>
       </tbody>
     </table> 
- <div className="d-flex justify-content-between align-items-center pb-1" id='pay'>
-                    
- <button>أداء </button>
-  </div>    
+     
                 </MDBCardBody>
               </MDBCard>
               )
