@@ -1,0 +1,44 @@
+$zro9ya:#022950;
+$l7morya:#CE292F;
+#m{
+    text-align: center;
+    color: red;
+}
+#mb {
+    margin-bottom: 5px !important;
+}
+#btnc{
+    background-color: $zro9ya;
+    color: white;
+
+}
+#add{
+    background-color: $zro9ya;
+    color: white;
+    cursor: pointer;
+}
+#thebody {
+    overflow-y: auto;
+    height: 300px;
+    margin-top: 6px;
+}
+#resident {
+    border: double;
+    border-radius: 10px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+#del{
+    direction: rtl;
+    button{
+        background-color: $l7morya;
+        color: white;
+        border-radius: 10px;
+        width: 55px;
+        direction: rtl;
+        text-align: center;
+    }
+}
+#fer{
+    font-weight: 900;
+}

@@ -1,0 +1,87 @@
+$zro9ya:#022950;
+$l7morya:#CE292F;
+#ser{
+    width:100%
+}
+#pointer{
+    cursor:pointer;
+}
+#qcen{
+    text-align: center;
+    font-size: larger;
+}
+#bld{
+    font-weight: bolder;
+}
+.serandbtn{
+    display: flex;
+    button{
+     font-family: Tajawal;
+     background-color: $zro9ya;
+     color: white;
+     border-radius: 10px;
+     margin-left: 3px;
+     font-weight: bold;
+    }
+}
+#add{
+    background-color: $zro9ya;
+    color: white;
+    cursor: pointer;
+}
+#thebody {
+    overflow-y: auto;
+    height: 300px;
+    margin-top: 6px;
+}
+#resident {
+    border: double;
+    border-radius: 10px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+#tit{
+    direction: rtl;
+}
+#userinfo {
+    direction: rtl;
+}
+#per{
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+#fer{
+    font-weight: 900;
+}
+.table {
+    direction: rtl;
+    border: double;
+    width: -webkit-fill-available;
+    border-radius: 10px !important;
+}
+#pay{
+    direction: rtl;
+    button{
+        background-color: $zro9ya;
+        color: white;
+        border-radius: 10px;
+        width: 55px;
+        direction: rtl;
+        text-align: center;
+    }
+}
+
+#mt{
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-right: 4px;
+}
+.out{
+            width: -webkit-fill-available !important;
+            border: none !important;
+            font-size: large !important;
+            color: $l7morya !important;
+            text-align: center;
+            cursor: pointer;
+
+    }
