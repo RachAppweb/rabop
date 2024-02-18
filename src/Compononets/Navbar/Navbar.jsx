@@ -26,6 +26,7 @@ export default function Navbar() {
   async function onLogout(){
     setAuthenticated(false)
     setLoading(true)
+    convertToC()
     await logoute()
     setAccessToken(null)
     setCSRFToken(null)
