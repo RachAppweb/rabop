@@ -167,7 +167,7 @@ export default function MDashboard ( ){
             <MDBCard className="mb-4">
               <MDBCardBody className="text-center">
                 {user[1]?.ser?.manimg?
-              <img className="img-fluid rounded-circle" alt="avatar" src={`http://127.0.0.1:8000${user[1]?.ser?.manimg}`} style={{ width: '150px' }}/>:
+              <img className="img-fluid rounded-circle" alt="avatar" src={`https://rabop-backend.onrender.com${user[1]?.ser?.manimg}`} style={{ width: '150px' }}/>:
               <img className="img-fluid rounded-circle" alt="avatar" src={userpic} style={{ width: '150px' }}/>  
               }
                 <p className="text-muted mb-1">{user[0]?.first_name} {user[0]?.last_name}</p>
