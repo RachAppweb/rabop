@@ -39,7 +39,7 @@ export default function useAxiosPrivate() {
             axiosPrivateInstance.interceptors.request.eject(requestIntercept)
             axiosPrivateInstance.interceptors.response.eject(responseIntercept)
         }
-    },[accessToken,user])
+    },[accessToken,user,csrftoken,refresh,setAccessToken])
  
   return axiosPrivateInstance
 }
