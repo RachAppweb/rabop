@@ -100,11 +100,11 @@ export default function MDashboard ( ){
             const {data}=await axiosPrivateInstance.get('signup/manager/')
             setItHas(user[1]?.ser?.is_has_dwar)
             setUser(data)
-            console.log(data)           
+            // console.log(data)           
                 setLoading(false)
               // console.log(user[1]?.ser?.manimg)
           }catch(error){
-            console.log(error)
+            // console.log(error)
             setLoading(false)
           }
         } 
@@ -132,7 +132,7 @@ export default function MDashboard ( ){
       setVaryingModal(!varyingModal)
       setLoading(false)
     }catch(error){
-      console.log(error)
+      // console.log(error)
       setLoading(false)
     }
   }
@@ -148,9 +148,9 @@ export default function MDashboard ( ){
       setNewPassword()
       setVaryingModalEdit(!varyingModalEdit)
       setLoading(false)
-      console.log(data)
+      // console.log(data)
     }catch(error){
-      console.log(error)
+      // console.log(error)
       setLoading(false)
     }
   } 

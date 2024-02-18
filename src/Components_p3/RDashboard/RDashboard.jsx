@@ -97,7 +97,7 @@ export default function RDashboard () {
         const {data} =await axiosPrivateInstance.get('signup/residents/')        
         setUser(data)        
         setLoading(false)       
-       console.log(data)
+      //  console.log(data)
        
        
       }catch(error){
@@ -130,7 +130,7 @@ export default function RDashboard () {
       setVaryingModal(!varyingModal)
       setLoading(false)
     }catch(error){
-      console.log(error)
+      // console.log(error)
       setLoading(false)
     }
   }
@@ -146,9 +146,9 @@ export default function RDashboard () {
       setNewPassword()
       setVaryingModalEdit(!varyingModalEdit)
       setLoading(false)
-      console.log(data)
+      // console.log(data)
     }catch(error){
-      console.log(error)
+      // console.log(error)
       setLoading(false)
     }
     
@@ -291,7 +291,7 @@ export default function RDashboard () {
                  
                   <div  id='thebody'> 
                   
-             {user[1]?.resident_info?.fatoras>0? <>
+             {user[1]?.resident_info?.fatoras.length>0? <>
              {user[1]?.resident_info?.fatoras.map((fatora)=>{
               return(
                 <MDBCard className="rounded-3" id='resident'>

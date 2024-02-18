@@ -73,7 +73,7 @@ export default function MyResident() {
       async function getManagerResident(){
         try{
           const myres =await axiosPrivateInstance.get(`get_res/${id}/`)        
-          setRes(myres.data)        
+          // setRes(myres.data)        
           setLoading(false)                              
         }catch(error){
          setLoading(false)
@@ -91,12 +91,12 @@ export default function MyResident() {
         // console.clear()
         try{
           const myres =await axiosPrivateInstance.delete(`resident/${id}/`)        
-          console.log(myres.data)        
+          // console.log(myres.data)        
           setLoading(false) 
           getManagerResident()                             
         }catch(error){
          setLoading(false)
-         console.log(error)
+        //  console.log(error)
         } 
       }
       async function onSubmitActivation(){
