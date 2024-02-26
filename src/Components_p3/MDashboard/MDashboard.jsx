@@ -103,7 +103,7 @@ export default function MDashboard ( ){
     },[user])   
        
         const getManager = useCallback(async()=>{
-          // setLoading(true)
+          setLoading(true)
           try{
             const {data}=await axiosPrivateInstance.get('signup/manager/')
             setItHas(user[1]?.ser?.is_has_dwar)

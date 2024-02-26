@@ -115,6 +115,7 @@ export default function MyResident() {
     // },[axiosPrivateInstance,setUser])
     
       async function getManagerResident(){
+        setLoading(true) 
         try{
           const myres =await axiosPrivateInstance.get(`get_res/${id}/`)        
           setRes(myres.data) 
