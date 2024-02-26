@@ -100,8 +100,9 @@ function scrollToContact() {
         </li>)} </>):(<></>)}
         
         <li className="nav-item">
-            {/* <Link className="nav-link "to={"#contact"}  >الإتصال</Link>  */}
-            <a className="nav-link " href="#contact" onClick={scrollToContact}>الإتصال</a>
+            {/*   */}
+            <Link className="nav-link "to={"#contact"}  >الإتصال</Link>
+            {/* <a className="nav-link " href="#contact" onClick={scrollToContact}>الإتصال</a> */}
           </li>
       </ul>
       <form className="d-flex" role="search">
@@ -135,8 +136,9 @@ function scrollToContact() {
           <Link className="nav-link "  to={"/Resident"}>ملفي</Link> 
         </li>)} </>):(<></>)}
         <li className="nav-item">
-            {/* <Link className="nav-link "to={"#contact"}  >الإتصال</Link> */}
-            <a className="nav-link " href="#contact" onClick={scrollToContact}>الإتصال</a>
+            {/*  */}
+            <Link className="nav-link "to={"#contact"}  >الإتصال</Link>
+            {/* <a className="nav-link " href="#contact" onClick={scrollToContact}>الإتصال</a> */}
           </li>
       </ul>
       <form className="d-flex" role="search">
@@ -173,8 +175,9 @@ function scrollToContact() {
           <Link className="nav-link "  to={"/Resident"}>ملفي</Link> 
         </li>)} </>):(<></>)}
           <li className="nav-item">
-            {/* <Link className="nav-link "to={"#contact"}  >الإتصال</Link> */}
-            <a className="nav-link " href="#contact" onClick={scrollToContact}>الإتصال</a>
+            {/*  */}
+            <Link className="nav-link "to={"#contact"}  >الإتصال</Link>
+            {/* <a className="nav-link " href="#contact" onClick={scrollToContact}>الإتصال</a> */}
           </li>
         </ul>
         <form className="d-flex" role="search">
@@ -205,8 +208,9 @@ function scrollToContact() {
           <Link className="nav-link "  to={"/Resident"}>ملفي</Link> 
         </li>)} </>):(<></>)}
           <li className="nav-item">
-            {/* <Link className="nav-link "to={"#contact"}  >الإتصال</Link> */}
-            <a className="nav-link " href="#contact" onClick={scrollToContact}>الإتصال</a>
+            {/*  */}
+            <Link className="nav-link "to={"#contact"}  >الإتصال</Link>
+            {/* <a className="nav-link " href="#contact" onClick={scrollToContact}>الإتصال</a> */}
             
           </li>
         </ul>
