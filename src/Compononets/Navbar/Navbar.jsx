@@ -46,6 +46,12 @@ export default function Navbar() {
   const convertToO=()=>{
     statusFunc(true)
 }
+function scrollToContact() {
+  const contactSection = document.getElementById('contact');
+  if (contactSection) {
+    contactSection.scrollIntoView({ behavior: 'smooth' });
+  }
+}
 
 // {authenticated?alert(user[0].first_name):<></>}
 // if(window.innerWidth >= 992){
@@ -95,7 +101,7 @@ export default function Navbar() {
         
         <li className="nav-item">
             {/* <Link className="nav-link "to={"#contact"}  >الإتصال</Link>  */}
-            <a className="nav-link " href="#contact">الإتصال</a>
+            <a className="nav-link " href="#contact" onClick={scrollToContact}>الإتصال</a>
           </li>
       </ul>
       <form className="d-flex" role="search">
@@ -130,7 +136,7 @@ export default function Navbar() {
         </li>)} </>):(<></>)}
         <li className="nav-item">
             {/* <Link className="nav-link "to={"#contact"}  >الإتصال</Link> */}
-            <a className="nav-link " href="#contact">الإتصال</a>
+            <a className="nav-link " href="#contact" onClick={scrollToContact}>الإتصال</a>
           </li>
       </ul>
       <form className="d-flex" role="search">
@@ -168,7 +174,7 @@ export default function Navbar() {
         </li>)} </>):(<></>)}
           <li className="nav-item">
             {/* <Link className="nav-link "to={"#contact"}  >الإتصال</Link> */}
-            <a className="nav-link " href="#contact">الإتصال</a>
+            <a className="nav-link " href="#contact" onClick={scrollToContact}>الإتصال</a>
           </li>
         </ul>
         <form className="d-flex" role="search">
@@ -200,7 +206,7 @@ export default function Navbar() {
         </li>)} </>):(<></>)}
           <li className="nav-item">
             {/* <Link className="nav-link "to={"#contact"}  >الإتصال</Link> */}
-            <a className="nav-link " href="#contact">الإتصال</a>
+            <a className="nav-link " href="#contact" onClick={scrollToContact}>الإتصال</a>
             
           </li>
         </ul>
