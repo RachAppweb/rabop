@@ -9,7 +9,7 @@ import Login from "./Authentication_Component/Login/Login";
 import VerfyRESLogin from "./Authentication_Component/VerifyRESLogin/VerfyRESLogin";
 import MiddleWare from "./Authentication_Component/MiddleWare/MiddleWare";
 // import ManagerMiddleWare from "./Authentication_Component/MiddleWare/managerMiddleWare";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, HashRouter } from "react-router-dom";
 import ResetPassword from "./Authentication_Component/ResetPassword/ResetPassword";
 import SettingPassword from "./Authentication_Component/SettingPassword/SettingPassword";
 import MyResident from "./Components_p3/MDashboard/MyResident";
@@ -19,7 +19,7 @@ import React from "react";
 function App() {
   return (
     <div>
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route path="/" element={<Home />} />
           {/* <Route path="/" element={<MiddleWare />}> */}
@@ -40,7 +40,7 @@ function App() {
           <Route path="/MyResident/:id" element={<MyResident />} />
           <Route path="/HowTo" element={<HowToCommponent />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }
