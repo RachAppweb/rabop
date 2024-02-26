@@ -1,10 +1,38 @@
 $zro9ya:#022950;
 $l7morya:#CE292F;
+.zro9{
+    background-color: $zro9ya;
+    .toast-body{
+        color:white
+    }
+}
+#mg{
+    text-align: center;
+    color: green;
+}
 #ser{
     width:100%
 }
+#cls{
+    border: none;
+    background: none;
+    font-size: 17px;
+    font-weight: bold;
+}
 #pointer{
     cursor:pointer;
+}
+#bet {
+    width: 46%;
+}
+#tb{
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+#qcn{
+    text-align: center;
+    font-size: larger;
+    margin: auto;
 }
 #qcen{
     text-align: center;

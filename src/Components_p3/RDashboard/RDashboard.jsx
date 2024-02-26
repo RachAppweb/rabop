@@ -1,4 +1,4 @@
-import React, {ChangeEvent,  useEffect, useState } from 'react'
+import React, {ChangeEvent,  useCallback,  useEffect, useState } from 'react'
 import './RDashboard.scss'
 import {
     MDBCol,
@@ -27,6 +27,7 @@ import { axiosInstance } from '../../FetchTypes/FetchTypes';
 import userpic from '../../Compononets/Assets/user.jpg'
 import Logout from '../../Authentication_Component/Logout/Logout';
 import { useNavigate } from 'react-router-dom';
+
 //   import { Link } from 'react-router-dom'
 export default function RDashboard () {
   //  the user and the accesToken which has been set in the useAuth hook with axiosinstance and logout
@@ -41,6 +42,8 @@ export default function RDashboard () {
   const [varyingState, setVaryingState] = useState('');
   const [varyingModal, setVaryingModal] = useState(false);
   const [varyingModalEdit, setVaryingModalEdit] = useState(false);
+  const [varyingModalMessage, setVaryingModalMessage] = useState(false);
+  const [varyingModaLogout, setVaryingModaLogout] = useState(false);
   // user update fields initialazing
   const [first_name, setFirstName] = useState();
   const [last_name, setLastName] = useState();
@@ -51,7 +54,8 @@ export default function RDashboard () {
   // password update fields initialazing
   const [old_password,setOldPassword]=useState()
   const [new_password,setNewPassword]=useState()
-  const [varyingModaLogout, setVaryingModaLogout] = useState(false);
+
+  const [messago,setMessage]=useState()
   const onChangeFirstName = (event) => {
     setFirstName(event.target.value);
   };
@@ -89,25 +93,24 @@ export default function RDashboard () {
     navigate('/')
 
   }
-  useEffect(()=>{
-    async function getResident(){
+  
+  
+   const  getResident= useCallback(async ()=>{
       setLoading(true)
-      // console.clear()
+      console.clear()
       try{
         const {data} =await axiosPrivateInstance.get('signup/residents/')        
         setUser(data)        
-        setLoading(false)       
-      //  console.log(data)
-       
-       
+        setLoading(false)        
       }catch(error){
        setLoading(false)
-      //  console.clear()
+       console.clear()
       } 
-    }
+    },[axiosPrivateInstance,setUser])
+     useEffect(()=>{
+   
     getResident()
-  },[axiosPrivateInstance,setUser])
-     
+  },[getResident])
   async function onSubmitUpdateForm(event){
     event.preventDefault()
     setLoading(true)
@@ -130,9 +133,23 @@ export default function RDashboard () {
       setVaryingModal(!varyingModal)
       setLoading(false)
     }catch(error){
-      // console.log(error)
+     
       setLoading(false)
     }
+  }
+  async function onDeleteNotification(id){
+    setLoading(true)
+    setMessage(null)
+    try{
+      const data =await axiosPrivateInstance.delete(`delete_by_res/${id}`)
+      setMessage(data?.data?.message)
+     
+      setLoading(false) 
+      getResident()
+      
+      
+    }catch(error){
+    setLoading(false)}
   }
    async function onSubmitUpdatePassword(event){
     event.preventDefault()
@@ -146,13 +163,9 @@ export default function RDashboard () {
       setNewPassword()
       setVaryingModalEdit(!varyingModalEdit)
       setLoading(false)
-      // console.log(data)
     }catch(error){
-      // console.log(error)
       setLoading(false)
     }
-    
-
   }
     return (     
       <div>
@@ -219,6 +232,17 @@ export default function RDashboard () {
             }}
              id='pointer'
             >تعديل كلمة السر</MDBCardText>
+                  </MDBListGroupItem>
+
+                  <MDBListGroupItem className="d-flex justify-content-center align-items-center p-3">
+                  
+                  <MDBCardText  onClick={() => {
+             
+              setVaryingModalMessage(!varyingModalMessage);
+              
+            }}
+             id='pointer'
+            >الإشعارات</MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
                   
@@ -293,6 +317,12 @@ export default function RDashboard () {
                   
              {user[1]?.resident_info?.fatoras.length>0? <>
              {user[1]?.resident_info?.fatoras.map((fatora)=>{
+              function formateDate(date) {
+          const dato=new Date(date)
+          const rightFormate=dato.toISOString().split("T")[0]
+          return rightFormate
+        }
+        const rightDate=formateDate(fatora.created_at)
               return(
                 <MDBCard className="rounded-3" id='resident'>
                 <MDBCardBody className="mx-1 my-2">
@@ -308,7 +338,7 @@ export default function RDashboard () {
         </tr>
         <tr>  
           <th colspan="2"> التاريخ </th>
-          <td>{fatora.created_at}</td>
+          <td>{rightDate}</td>
         </tr>
         <tr>
           <th colspan="2" id='fer'>الثمن</th>
@@ -473,6 +503,93 @@ export default function RDashboard () {
     </MDBModalFooter>
   </MDBModalContent>
   
+  
+</MDBModalDialog>
+</MDBModal>
+
+
+<MDBModal open={varyingModalMessage} setOpen={setVaryingModalMessage} tabIndex='-1'>
+<MDBModalDialog> 
+  <MDBModalContent>
+    <MDBModalHeader>
+      <MDBModalTitle id='bld'>الإشعارات</MDBModalTitle>
+      
+      <div className='ripple ripple-surface btn-close' color='none' onClick={() => setVaryingModalMessage(!varyingModalMessage)}></div>
+    </MDBModalHeader>    
+    <MDBModalBody id='qcn'>
+    {messago ? <><div id='mg'>
+        <p >{messago}</p>
+        </div> </>:<></>} 
+      {user[1]?.resident_info?.messages.length>0?<>
+      {user[1]?.resident_info?.messages.map((message)=>{
+        function formateDate(date) {
+          const dato=new Date(date)
+          const rightFormate=dato.toISOString().split("T")[0]
+          return rightFormate
+        }
+        const rightDate=formateDate(message.created_at)
+        return (
+          <MDBContainer
+       style={{
+         width: "auto",
+         position: "relative",
+         top: "10px",
+         right: "10px",
+         zIndex: 9999
+       }}
+     >
+      {message.is_global?<>
+        <div class="toast fade show zro9" role="alert" id='tb' aria-live="assertive" aria-atomic="true" data-autohide="false">
+         <div class="toast-header">
+           <svg class="rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+             <rect fill="#007aff" width="100%" height="100%"></rect></svg>
+           <strong class="mr-auto">{message.name_of_manager}</strong>
+           <div id='bet'></div>
+           <small class="text-muted">{rightDate}</small>
+           <button type="button" id='cls' class="ml-2 mb-1 close" data-dismiss="toast" onClick={()=>onDeleteNotification(message.id)} aria-label="Close">
+             <span aria-hidden="true">×</span>
+           </button>
+         </div>
+         <div class="toast-body">
+          {message.message}
+         </div>
+       </div>
+      </>:<>
+      <div class="toast fade show" role="alert" id='tb' aria-live="assertive" aria-atomic="true" data-autohide="false">
+         <div class="toast-header">
+           <svg class="rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+             <rect fill="#007aff" width="100%" height="100%"></rect></svg>
+           <strong class="mr-auto">{message.name_of_manager}</strong>
+           <div id='bet'></div>
+           <small class="text-muted">{rightDate}</small>
+           <button type="button" id='cls' class="ml-2 mb-1 close" data-dismiss="toast" onClick={()=>onDeleteNotification(message.id)} aria-label="Close">
+             <span aria-hidden="true">×</span>
+           </button>
+         </div>
+         <div class="toast-body">
+          {message.message}
+         </div>
+       </div>
+      </>}
+       
+       
+     </MDBContainer>
+        )
+      
+      })}
+      </>:<>
+      
+      <b>لا توجد إشعارات</b>
+      </>}
+    
+    </MDBModalBody>
+    <MDBModalFooter>
+      <div className='ripple ripple-surface btn btn-secondary' onClick={() => setVaryingModalMessage(!varyingModalMessage)}>
+        إغلاق
+      </div>
+      
+    </MDBModalFooter>
+  </MDBModalContent> 
 </MDBModalDialog>
 </MDBModal>
   </section>

@@ -1,5 +1,5 @@
 
-import React, {ChangeEvent,  useEffect, useState } from 'react'
+import React, {ChangeEvent,  useCallback,  useEffect, useState } from 'react'
 import './ActivateRes.scss'
 import {
     MDBCol,
@@ -45,16 +45,57 @@ export default function MyResident() {
     const [varyingState, setVaryingState] = useState('');
     const [varyingModal, setVaryingModal] = useState(false);
     const [price,setFatouraPrice]=useState()
-    const [message,setMessage]=useState()
+    const [messsage,setMesssage]=useState()
+    const [varyingModaLNot, setVaryingModaLNot] = useState(false);
+    const [varyingModalMessage, setVaryingModalMessage] = useState(false);
+
+    const [messago,setMessage]=useState()
+    const [errormessage,setErrorMessage]=useState()
+    const [message,setNotification]=useState()
+    const onNotificationChange=(event)=>{
+      setNotification(event.target.value)
+    }
     function onPriceChange(event){
       setFatouraPrice(event.target.value)
     }
     const { id} = useParams()
+    async function onSubmitNotification(event){
+      event.preventDefault()
+      setLoading(true)
+      setMessage(null)
+      
+      try{
+        const {data} =await axiosPrivateInstance.post(`mess_to_res/${id}/`,JSON.stringify({
+          message
+        }))
+        setMessage(data?.message)
+        setLoading(false)        
+        getManagerResident()      
+      }catch(error){
+      setLoading(false)
+    
+    setErrorMessage(error?.response?.data?.error)
+    }
+    }
     useEffect(()=>{
       setAuthenticated(user[0]? true:false)
     },[user])
-    useEffect(()=>{
-        async function getManager(){
+  
+    async function onDeleteNotification(id){
+      setLoading(true)
+      setMessage(null)
+      try{
+        const data =await axiosPrivateInstance.delete(`mess_to_res/${id}/`)
+        setMessage(data?.data?.message)       
+        setLoading(false) 
+       getManagerResident()              
+      }catch(error){
+      setLoading(false)}
+    }
+
+   
+
+        const getManager = useCallback(async ()=>{
           setLoading(true)
         //   console.clear()
           try{
@@ -66,14 +107,18 @@ export default function MyResident() {
             // console.clear()
             setLoading(false)
           }
-        } 
-        getManager()  // console.log(user[0]?.username)
-    },[axiosPrivateInstance,setUser])
+        },[axiosPrivateInstance,setUser] )
+        useEffect(()=>{
+          getManager()
+        },[getManager])
+          // console.log(user[0]?.username)
+    // },[axiosPrivateInstance,setUser])
     
       async function getManagerResident(){
         try{
           const myres =await axiosPrivateInstance.get(`get_res/${id}/`)        
-          // setRes(myres.data)        
+          setRes(myres.data) 
+          // console.log(myres.data)       
           setLoading(false)                              
         }catch(error){
          setLoading(false)
@@ -91,12 +136,12 @@ export default function MyResident() {
         // console.clear()
         try{
           const myres =await axiosPrivateInstance.delete(`resident/${id}/`)        
-          // console.log(myres.data)        
+          console.log(myres.data)        
           setLoading(false) 
           getManagerResident()                             
         }catch(error){
          setLoading(false)
-        //  console.log(error)
+         console.log(error)
         } 
       }
       async function onSubmitActivation(){
@@ -113,7 +158,7 @@ export default function MyResident() {
       }
       async function onSubmitFatora(event){
         event.preventDefault()
-        setMessage(null)
+        setMesssage(null)
         setLoading(true)
         try{
           const response=await axiosPrivateInstance.post(`resident/${id}/`,JSON.stringify({
@@ -124,7 +169,7 @@ export default function MyResident() {
           setVaryingModal(!varyingModal)
         }catch(error){
          
-          setMessage(error?.response?.data?.error)
+          setMesssage(error?.response?.data?.error)
           setLoading(false)
         }
       }
@@ -190,7 +235,28 @@ export default function MyResident() {
          إضافة فاتورة
             </MDBCardText>
                   </MDBListGroupItem>
+                  <MDBListGroupItem className="d-flex justify-content-center align-items-center p-3" id='add'>
                   
+                      <MDBCardText 
+            onClick={() => {
+              setVaryingModaLNot(!varyingModaLNot);
+              
+            }}
+          >
+       إرسال إشعار
+            </MDBCardText>
+                  </MDBListGroupItem>
+                  <MDBListGroupItem className="d-flex justify-content-center align-items-center p-3" id='add'>
+                  
+                      <MDBCardText 
+            onClick={() => {
+              setVaryingModalMessage(!varyingModalMessage);
+              
+            }}
+          >
+      إشعارات
+            </MDBCardText>
+                  </MDBListGroupItem>
                   
                  
                 </MDBListGroup>
@@ -281,7 +347,7 @@ export default function MyResident() {
         <tr>
           
           <th colspan="2"> التاريخ </th>
-          <td> {fatora.created_at}</td>
+          <td>08/12/2023</td>
         </tr>
         <tr>
           
@@ -315,6 +381,128 @@ export default function MyResident() {
            
            </MDBCol>
          </MDBRow>
+         <MDBModal open={varyingModaLNot} setOpen={setVaryingModaLNot} tabIndex='-1'>
+<MDBModalDialog> 
+  <form onSubmit={onSubmitNotification}>
+  <MDBModalContent>
+    <MDBModalHeader>
+      <MDBModalTitle id='bld'>إنشاء إشعار</MDBModalTitle>
+      <div className='ripple ripple-surface btn-close' color='none' onClick={() => setVaryingModaLNot(!varyingModaLNot)}></div>
+    </MDBModalHeader>    
+    <MDBModalBody id='qcen'>
+      {messago && <><div id='mg'>
+        <p>{messago}</p>
+        </div> </>}
+        {errormessage && <><div id='mr'>
+        <p>{errormessage}</p>
+        </div> </>}
+     <div>
+     <div className='mb-3'>
+          <>
+           <label className='col-form-label'>الإشعار</label>
+            
+            <textarea name="" id="not" cols="30" rows="10" onChange={onNotificationChange} className='form-control'></textarea>
+          </>
+        </div>
+     </div>
+    </MDBModalBody>
+    <MDBModalFooter>
+      <div className='ripple ripple-surface btn btn-secondary' onClick={() => setVaryingModaLNot(!varyingModaLNot)}>
+        إغلاق
+      </div>
+      <button className='ripple ripple-surface btn btn-primary' type='submit' id='add' >متابعة</button>
+    </MDBModalFooter>
+  </MDBModalContent>
+  </form>  
+</MDBModalDialog>
+</MDBModal>
+
+
+<MDBModal open={varyingModalMessage} setOpen={setVaryingModalMessage} tabIndex='-1'>
+<MDBModalDialog> 
+  <MDBModalContent>
+    <MDBModalHeader>
+      <MDBModalTitle id='bld'>الإشعارات</MDBModalTitle>
+      
+      <div className='ripple ripple-surface btn-close' color='none' onClick={() => setVaryingModalMessage(!varyingModalMessage)}></div>
+    </MDBModalHeader>    
+    <MDBModalBody id='qcn'>
+    {messago ? <><div id='mg'>
+        <p >{messago}</p>
+        </div> </>:<></>} 
+      { res?.resident?.messages?.length > 0?<>
+      {res?.resident?.messages.map((message)=>{
+        function formateDate(date) {
+          const dato=new Date(date)
+          const rightFormate=dato.toISOString().split("T")[0]
+          return rightFormate
+        }
+        const rightDate=formateDate(message.created_at)
+        return (
+          <MDBContainer
+       style={{
+         width: "auto",
+         position: "relative",
+         top: "10px",
+         right: "10px",
+         zIndex: 9999
+       }}
+     >
+      {message.is_global?<>
+        <div class="toast fade show zro9" role="alert" id='tb' aria-live="assertive" aria-atomic="true" data-autohide="false">
+         <div class="toast-header">
+           <svg class="rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+             <rect fill="#007aff" width="100%" height="100%"></rect></svg>
+           <strong class="mr-auto">{message.name_of_manager}</strong>
+           <div id='bet'></div>
+           <small class="text-muted">{rightDate}</small>
+           <button type="button" id='cls' class="ml-2 mb-1 close" data-dismiss="toast" onClick={()=>onDeleteNotification(message.id)} aria-label="Close">
+             <span aria-hidden="true">×</span>
+           </button>
+         </div>
+         <div class="toast-body">
+          {message.message}
+         </div>
+       </div>
+      </>:<>
+      <div class="toast fade show" role="alert" id='tb' aria-live="assertive" aria-atomic="true" data-autohide="false">
+         <div class="toast-header">
+           <svg class="rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+             <rect fill="#007aff" width="100%" height="100%"></rect></svg>
+           <strong class="mr-auto">{message.name_of_manager}</strong>
+           <div id='bet'></div>
+           <small class="text-muted">{rightDate}</small>
+           <button type="button" id='cls' class="ml-2 mb-1 close" data-dismiss="toast" onClick={()=>onDeleteNotification(message.id)} aria-label="Close">
+             <span aria-hidden="true">×</span>
+           </button>
+         </div>
+         <div class="toast-body">
+          {message.message}
+         </div>
+       </div>
+      </>}
+       
+       
+     </MDBContainer> 
+        )
+      
+      })}
+      </>:<>
+      
+      <b>لا توجد إشعارات</b>
+      </>}
+    
+    </MDBModalBody>
+    <MDBModalFooter >
+      <div className='ripple ripple-surface btn btn-secondary' onClick={() => setVaryingModalMessage(!varyingModalMessage)}>
+        إغلاق
+      </div>
+    </MDBModalFooter>
+    
+  </MDBModalContent> 
+</MDBModalDialog>
+</MDBModal>
+
        </MDBContainer>
        <MDBModal open={varyingModal} setOpen={setVaryingModal} tabIndex='-1'>
         <MDBModalDialog>
@@ -326,9 +514,9 @@ export default function MyResident() {
             </MDBModalHeader>
             
             <MDBModalBody>
-              {message?<>
+              {messsage?<>
               <div id='m'>
-                <p>{message}</p>
+                <p>{messsage}</p>
               </div>
               </>:<></>}
               <div >

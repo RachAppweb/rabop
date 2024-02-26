@@ -17,7 +17,7 @@ import {
     MDBModalBody,
     MDBModalFooter,
 } from 'mdb-react-ui-kit';
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import './MDashboard.scss'
 
 import Loading from '../../Compononets/Loading/Loading';
@@ -42,6 +42,9 @@ export default function MDashboard ( ){
      const [varyingState, setVaryingState] = useState('');
     const [varyingModal, setVaryingModal] = useState(false);
     const [varyingModalEdit, setVaryingModalEdit] = useState(false);
+    const [varyingModaLogout, setVaryingModaLogout] = useState(false);
+    const [varyingModaLNot, setVaryingModaLNot] = useState(false);
+    const [varyingModalMessage, setVaryingModalMessage] = useState(false);
     // user update fields initialazing
     const [first_name, setFirstName] = useState();
     const [last_name, setLastName] = useState();
@@ -53,7 +56,12 @@ export default function MDashboard ( ){
     const [old_password,setOldPassword]=useState()
     const [new_password,setNewPassword]=useState()
     const [searchitem,setSearchItem]=useState('')
-    const [varyingModaLogout, setVaryingModaLogout] = useState(false);
+    const [messago,setMessage]=useState()
+    const [errormessage,setErrorMessage]=useState()
+    const [message,setNotification]=useState()
+    const onNotificationChange=(event)=>{
+      setNotification(event.target.value)
+    }
     const onSearchItem=(event)=>{
       setSearchItem(event.target.value)
     }
@@ -93,23 +101,65 @@ export default function MDashboard ( ){
     useEffect(()=>{
       setAuthenticated(user[0]? true:false)
     },[user])   
-    useEffect(()=>{     
-        async function getManager(){
-          setLoading(true)
+       
+        const getManager = useCallback(async()=>{
+          // setLoading(true)
           try{
             const {data}=await axiosPrivateInstance.get('signup/manager/')
             setItHas(user[1]?.ser?.is_has_dwar)
             setUser(data)
             // console.log(data)           
-                setLoading(false)
-              // console.log(user[1]?.ser?.manimg)
+                setLoading(false) 
           }catch(error){
-            // console.log(error)
+            console.log(error)
             setLoading(false)
           }
-        } 
-        getManager()
-    },[axiosPrivateInstance,setUser])  
+        },[axiosPrivateInstance,setUser])
+        useEffect(()=>{
+          getManager()
+        },[getManager])
+        async function onDeleteNotification(id){
+          setLoading(true)
+          setMessage(null)
+          try{
+            const data =await axiosPrivateInstance.delete(`mess_to_res/${id}`)
+            setMessage(data?.data?.message)
+            setLoading(false) 
+            getManager() 
+          }catch(error){
+          setLoading(false)}
+        }
+        async function onDeleteAllNotification(){
+          setLoading(true)
+          setMessage(null)
+          try{
+            const data =await axiosPrivateInstance.delete(`mess_to_res/`)
+            // setMessage(data?.data?.message)
+            setLoading(false) 
+            getManager() 
+          }catch(error){
+          setLoading(false)}
+        }
+        async function onSubmitNotification(event){
+          event.preventDefault()
+          setLoading(true)
+          setMessage(null)
+          
+          try{
+            const {data} =await axiosPrivateInstance.post(`mess_to_res/`,JSON.stringify({
+              message
+            }))
+            setMessage(data?.message)
+            setLoading(false) 
+            
+            getManager()
+             
+          }catch(error){
+          setLoading(false)
+        
+        setErrorMessage(error?.response?.data?.error)
+        }
+        }
     async function onSubmitUpdateForm(event){
     event.preventDefault()
     setLoading(true)
@@ -132,7 +182,7 @@ export default function MDashboard ( ){
       setVaryingModal(!varyingModal)
       setLoading(false)
     }catch(error){
-      // console.log(error)
+      console.log(error)
       setLoading(false)
     }
   }
@@ -148,9 +198,9 @@ export default function MDashboard ( ){
       setNewPassword()
       setVaryingModalEdit(!varyingModalEdit)
       setLoading(false)
-      // console.log(data)
+      console.log(data)
     }catch(error){
-      // console.log(error)
+      console.log(error)
       setLoading(false)
     }
   } 
@@ -196,6 +246,28 @@ export default function MDashboard ( ){
             id='pointer'
           >
           تعديل الحساب 
+            </MDBCardText>
+                  </MDBListGroupItem>
+                  <MDBListGroupItem className="d-flex justify-content-center align-items-center p-3">                  
+                      <MDBCardText 
+            onClick={() => {
+              
+              setVaryingModaLNot(!varyingModaLNot);             
+            }}
+            id='pointer'
+          >
+        إنشاء إشعار جماعي
+            </MDBCardText>
+                  </MDBListGroupItem>
+                  <MDBListGroupItem className="d-flex justify-content-center align-items-center p-3">                  
+                      <MDBCardText 
+            onClick={() => {
+              
+              setVaryingModalMessage(!varyingModalMessage);             
+            }}
+            id='pointer'
+          >
+       إشعاراتي
             </MDBCardText>
                   </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-center align-items-center p-3">                 
@@ -282,6 +354,7 @@ export default function MDashboard ( ){
                     else if(resident.number_of_water_meter.includes(searchitem)){
                     return resident
                     }
+                    
                     }).map(resident=>{
                       return(<Link id='none' to={`/MyResident/${resident.user}`}>
                       <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3"id='resident'>
@@ -469,6 +542,136 @@ export default function MDashboard ( ){
       <button className='ripple ripple-surface btn btn-primary' type='submit' id='logout' onClick={()=>onLogout()}>متابعة</button>
     </MDBModalFooter>
   </MDBModalContent>  
+</MDBModalDialog>
+</MDBModal>
+
+<MDBModal open={varyingModaLNot} setOpen={setVaryingModaLNot} tabIndex='-1'>
+<MDBModalDialog> 
+  <form onSubmit={onSubmitNotification}>
+  <MDBModalContent>
+    <MDBModalHeader>
+      <MDBModalTitle id='bld'>إنشاء إشعار</MDBModalTitle>
+      <div className='ripple ripple-surface btn-close' color='none' onClick={() => setVaryingModaLNot(!varyingModaLNot)}></div>
+    </MDBModalHeader>    
+    <MDBModalBody id='qcen'>
+      {messago && <><div id='mg'>
+        <p>{messago}</p>
+        </div> </>}
+        {errormessage && <><div id='mr'>
+        <p>{errormessage}</p>
+        </div> </>}
+     <div>
+     <div className='mb-3'>
+          <>
+           <label className='col-form-label'>الإشعار</label>
+            
+            <textarea name="" id="not" cols="30" rows="10" onChange={onNotificationChange} className='form-control'></textarea>
+          </>
+        </div>
+     </div>
+    </MDBModalBody>
+    <MDBModalFooter>
+      <div className='ripple ripple-surface btn btn-secondary' onClick={() => setVaryingModaLNot(!varyingModaLNot)}>
+        إغلاق
+      </div>
+      <button className='ripple ripple-surface btn btn-primary' type='submit' id='add' >متابعة</button>
+    </MDBModalFooter>
+  </MDBModalContent>
+  </form>  
+</MDBModalDialog>
+</MDBModal>
+
+<MDBModal open={varyingModalMessage} setOpen={setVaryingModalMessage} tabIndex='-1'>
+<MDBModalDialog> 
+  <MDBModalContent>
+    <MDBModalHeader>
+      <MDBModalTitle id='bld'>الإشعارات</MDBModalTitle>
+      
+      <div className='ripple ripple-surface btn-close' color='none' onClick={() => setVaryingModalMessage(!varyingModalMessage)}></div>
+    </MDBModalHeader>    
+    <MDBModalBody id='qcn'>
+    {messago ? <><div id='mg'>
+        <p >{messago}</p>
+        </div> </>:<></>} 
+      {user[0]?.man_messages?.length > 0?<>
+      {user[0]?.man_messages.map((message)=>{
+        function formateDate(date) {
+          const dato=new Date(date)
+          const rightFormate=dato.toISOString().split("T")[0]
+          return rightFormate
+        }
+        const rightDate=formateDate(message.created_at)
+        return (
+          <MDBContainer
+       style={{
+         width: "auto",
+         position: "relative",
+         top: "10px",
+         right: "10px",
+         zIndex: 9999
+       }}
+     >
+      {message.is_global?<>
+        <div class="toast fade show zro9" role="alert" id='tb' aria-live="assertive" aria-atomic="true" data-autohide="false">
+         <div class="toast-header">
+           <svg class="rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+             <rect fill="#007aff" width="100%" height="100%"></rect></svg>
+           <strong class="mr-auto">{message.name_of_manager}</strong>
+           <div id='bet'></div>
+           <small class="text-muted">{rightDate}</small>
+           <button type="button" id='cls' class="ml-2 mb-1 close" data-dismiss="toast" onClick={()=>onDeleteNotification(message.id)} aria-label="Close">
+             <span aria-hidden="true">×</span>
+           </button>
+         </div>
+         <div class="toast-body">
+          {message.message}
+         </div>
+       </div>
+      </>:<>
+      <div class="toast fade show" role="alert" id='tb' aria-live="assertive" aria-atomic="true" data-autohide="false">
+         <div class="toast-header">
+           <svg class="rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
+             <rect fill="#007aff" width="100%" height="100%"></rect></svg>
+           <strong class="mr-auto">{message.name_of_manager}</strong>
+           <div id='bet'></div>
+           <small class="text-muted">{rightDate}</small>
+           <button type="button" id='cls' class="ml-2 mb-1 close" data-dismiss="toast" onClick={()=>onDeleteNotification(message.id)} aria-label="Close">
+             <span aria-hidden="true">×</span>
+           </button>
+         </div>
+         <div class="toast-body">
+          {message.message}
+         </div>
+       </div>
+      </>}
+       
+       
+     </MDBContainer> 
+        )
+      
+      })}
+      </>:<>
+      
+      <b>لا توجد إشعارات</b>
+      </>}
+    
+    </MDBModalBody>
+    {user[0]?.man_messages?.length > 0?<>
+      <MDBModalFooter id='betw'>
+      <button className='ripple ripple-surface btn btn-primary' id='logout' onClick={()=>{onDeleteAllNotification()}}>مسح الكل</button>
+      <div className='ripple ripple-surface btn btn-secondary' onClick={() => setVaryingModalMessage(!varyingModalMessage)}>
+        إغلاق
+      </div>
+    </MDBModalFooter>
+    </>:<>
+    <MDBModalFooter >
+      <div className='ripple ripple-surface btn btn-secondary' onClick={() => setVaryingModalMessage(!varyingModalMessage)}>
+        إغلاق
+      </div>
+    </MDBModalFooter>
+    </>}
+    
+  </MDBModalContent> 
 </MDBModalDialog>
 </MDBModal>
       </div>
