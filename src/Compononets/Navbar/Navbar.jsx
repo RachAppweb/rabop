@@ -101,7 +101,7 @@ function scrollToContact() {
         
         <li className="nav-item">
             {/*   */}
-            <Link className="nav-link "to={"#contact"}  >الإتصال</Link>
+            <Link className="nav-link "to={"/contact"}  >الإتصال</Link>
             {/* <a className="nav-link " href="#contact" onClick={scrollToContact}>الإتصال</a> */}
           </li>
       </ul>
@@ -137,7 +137,7 @@ function scrollToContact() {
         </li>)} </>):(<></>)}
         <li className="nav-item">
             {/*  */}
-            <Link className="nav-link "to={"#contact"}  >الإتصال</Link>
+            <Link className="nav-link "to={"/contact"}  >الإتصال</Link>
             {/* <a className="nav-link " href="#contact" onClick={scrollToContact}>الإتصال</a> */}
           </li>
       </ul>
@@ -176,7 +176,7 @@ function scrollToContact() {
         </li>)} </>):(<></>)}
           <li className="nav-item">
             {/*  */}
-            <Link className="nav-link "to={"#contact"}  >الإتصال</Link>
+            <Link className="nav-link "to={"/contact"}  >الإتصال</Link>
             {/* <a className="nav-link " href="#contact" onClick={scrollToContact}>الإتصال</a> */}
           </li>
         </ul>
@@ -209,7 +209,7 @@ function scrollToContact() {
         </li>)} </>):(<></>)}
           <li className="nav-item">
             {/*  */}
-            <Link className="nav-link "to={"#contact"}  >الإتصال</Link>
+            <Link className="nav-link "to={"/contact"}  >الإتصال</Link>
             {/* <a className="nav-link " href="#contact" onClick={scrollToContact}>الإتصال</a> */}
             
           </li>
