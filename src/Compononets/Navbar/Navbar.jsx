@@ -96,9 +96,11 @@ function goToBootom(){
       </ul>
       <form className="d-flex" role="search">
         
-      {authenticated? (<> {user[0]?.is_manager?(<>{user[1]?.ser?.is_has_dwar?<><div className="btn"  id='logout' onClick={() => setVaryingModaLogout(!varyingModaLogout)} >تسجيل الخروج</div></>:<>
+      {authenticated? (<> {user[0]?.is_manager?(<>{user[1]?.ser?.is_has_dwar?<><div className="btn"  id='logout' onClick={() => {setVaryingModaLogout(!varyingModaLogout)
+      convertToC()}} >تسجيل الخروج</div></>:<>
         <Link className="btn btn-primary" id='auth' type="submit" to={'/Resident_Signup'}> إنشاء حساب </Link>
-        <Link className="btn btn-primary" id='auth' type="submit" to={'/Login'}>تسجيل الدخول</Link></>}</>):(<><div className="btn"  id='logout' onClick={() => setVaryingModaLogout(!varyingModaLogout)} >تسجيل الخروج</div></>)} </>) :
+        <Link className="btn btn-primary" id='auth' type="submit" to={'/Login'}>تسجيل الدخول</Link></>}</>):(<><div className="btn"  id='logout' onClick={() => {setVaryingModaLogout(!varyingModaLogout)
+        convertToC()}} >تسجيل الخروج</div></>)} </>) :
         
         (<>
         <Link className="btn btn-primary" id='auth' type="submit" to={'/Resident_Signup'}> إنشاء حساب </Link>
@@ -128,9 +130,11 @@ function goToBootom(){
           </li>
       </ul>
       <form className="d-flex" role="search">
-      {authenticated? (<> {user[0]?.is_manager?(<>{user[1]?.ser?.is_has_dwar?<><div className="btn"  id='logout' onClick={() => setVaryingModaLogout(!varyingModaLogout)} >تسجيل الخروج</div></>:<>
+      {authenticated? (<> {user[0]?.is_manager?(<>{user[1]?.ser?.is_has_dwar?<><div className="btn"  id='logout' onClick={() => {setVaryingModaLogout(!varyingModaLogout)
+      convertToC()}} >تسجيل الخروج</div></>:<>
         <Link className="btn btn-primary" id='auth' type="submit" to={'/Resident_Signup'}> إنشاء حساب </Link>
-        <Link className="btn btn-primary" id='auth' type="submit" to={'/Login'}>تسجيل الدخول</Link></>}</>):(<><div className="btn"  id='logout' onClick={() => setVaryingModaLogout(!varyingModaLogout)} >تسجيل الخروج</div></>)} </>) :
+        <Link className="btn btn-primary" id='auth' type="submit" to={'/Login'}>تسجيل الدخول</Link></>}</>):(<><div className="btn"  id='logout' onClick={() => {setVaryingModaLogout(!varyingModaLogout)
+        convertToC()}} >تسجيل الخروج</div></>)} </>) :
         
         (<>
         <Link className="btn btn-primary" id='auth' type="submit" to={'/Resident_Signup'}> إنشاء حساب </Link>
@@ -164,9 +168,11 @@ function goToBootom(){
           </li>
         </ul>
         <form className="d-flex" role="search">
-        {authenticated? (<> {user[0]?.is_manager?(<>{user[1]?.ser?.is_has_dwar?<><div className="btn"  id='logout' onClick={() => setVaryingModaLogout(!varyingModaLogout)} >تسجيل الخروج</div></>:<>
+        {authenticated? (<> {user[0]?.is_manager?(<>{user[1]?.ser?.is_has_dwar?<><div className="btn"  id='logout' onClick={() => {setVaryingModaLogout(!varyingModaLogout)
+        convertToC()}} >تسجيل الخروج</div></>:<>
         <Link className="btn btn-primary" id='auth' type="submit" to={'/Resident_Signup'}> إنشاء حساب </Link>
-        <Link className="btn btn-primary" id='auth' type="submit" to={'/Login'}>تسجيل الدخول</Link></>}</>):(<><div className="btn"  id='logout' onClick={() => setVaryingModaLogout(!varyingModaLogout)} >تسجيل الخروج</div></>)} </>) :
+        <Link className="btn btn-primary" id='auth' type="submit" to={'/Login'}>تسجيل الدخول</Link></>}</>):(<><div className="btn"  id='logout' onClick={() => {setVaryingModaLogout(!varyingModaLogout)
+        convertToC()}} >تسجيل الخروج</div></>)} </>) :
         
         (<>
         <Link className="btn btn-primary" id='auth' type="submit" to={'/Resident_Signup'}> إنشاء حساب </Link>
@@ -195,9 +201,11 @@ function goToBootom(){
           </li>
         </ul>
         <form className="d-flex" role="search">
-        {authenticated? (<> {user[0]?.is_manager?(<>{user[1]?.ser?.is_has_dwar?<><div className="btn"  id='logout' onClick={() => setVaryingModaLogout(!varyingModaLogout)} >تسجيل الخروج</div></>:<>
+        {authenticated? (<> {user[0]?.is_manager?(<>{user[1]?.ser?.is_has_dwar?<><div className="btn"  id='logout' onClick={() => {setVaryingModaLogout(!varyingModaLogout)
+        convertToC()}} >تسجيل الخروج</div></>:<>
         <Link className="btn btn-primary" id='auth' type="submit" to={'/Resident_Signup'}> إنشاء حساب </Link>
-        <Link className="btn btn-primary" id='auth' type="submit" to={'/Login'}>تسجيل الدخول</Link></>}</>):(<><div className="btn"  id='logout' onClick={() => setVaryingModaLogout(!varyingModaLogout)} >تسجيل الخروج</div></>)} </>) :
+        <Link className="btn btn-primary" id='auth' type="submit" to={'/Login'}>تسجيل الدخول</Link></>}</>):(<><div className="btn"  id='logout' onClick={() => {setVaryingModaLogout(!varyingModaLogout)
+        convertToC()}} >تسجيل الخروج</div></>)} </>) :
         
         (<>
         <Link className="btn btn-primary" id='auth' type="submit" to={'/Resident_Signup'}> إنشاء حساب </Link>
