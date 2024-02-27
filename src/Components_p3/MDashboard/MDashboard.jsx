@@ -103,7 +103,7 @@ export default function MDashboard ( ){
     },[user])   
        
         const getManager = useCallback(async()=>{
-          setLoading(true)
+           
           try{
             const {data}=await axiosPrivateInstance.get('signup/manager/')
             setItHas(user[1]?.ser?.is_has_dwar)
@@ -237,7 +237,7 @@ export default function MDashboard ( ){
             <MDBCard className="mb-4 mb-lg-0">
               <MDBCardBody className="p-0">
                 <MDBListGroup flush className="rounded-3">                  
-                  <MDBListGroupItem className="d-flex justify-content-center align-items-center p-3">                  
+                  <MDBListGroupItem className="d-flex justify-content-center align-items-center p-3"id='ebtn'>                  
                       <MDBCardText 
             onClick={() => {
               setVaryingState('@mdo');
@@ -248,7 +248,7 @@ export default function MDashboard ( ){
           تعديل الحساب 
             </MDBCardText>
                   </MDBListGroupItem>
-                  <MDBListGroupItem className="d-flex justify-content-center align-items-center p-3">                  
+                  <MDBListGroupItem className="d-flex justify-content-center align-items-center p-3"id='ebtn'>                  
                       <MDBCardText 
             onClick={() => {
               
@@ -259,7 +259,7 @@ export default function MDashboard ( ){
         إنشاء إشعار جماعي
             </MDBCardText>
                   </MDBListGroupItem>
-                  <MDBListGroupItem className="d-flex justify-content-center align-items-center p-3">                  
+                  <MDBListGroupItem className="d-flex justify-content-center align-items-center p-3"id='ebtn'>                  
                       <MDBCardText 
             onClick={() => {
               

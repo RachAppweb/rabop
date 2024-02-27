@@ -197,7 +197,7 @@ export default function RDashboard () {
             <MDBCardBody className="p-0">
               <MDBListGroup flush className="rounded-3">
                
-                <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
+                <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3" id='ebtn'>
                 <i class="fa-solid fa-file-invoice"></i>
                   <MDBCardText>{user[1]?.resident_info?.fatoras?.length}</MDBCardText>
                 </MDBListGroupItem>
@@ -209,7 +209,7 @@ export default function RDashboard () {
               <MDBCardBody className="p-0">
                 <MDBListGroup flush className="rounded-3">
                   
-                  <MDBListGroupItem className="d-flex justify-content-center align-items-center p-3">
+                  <MDBListGroupItem className="d-flex justify-content-center align-items-center p-3" id='ebtn'>
                       <MDBCardText 
             onClick={() => {
               setVaryingState('@mdo');
@@ -223,7 +223,7 @@ export default function RDashboard () {
                     
                   </MDBListGroupItem>
                  
-                  <MDBListGroupItem className="d-flex justify-content-center align-items-center p-3">
+                  <MDBListGroupItem className="d-flex justify-content-center align-items-center p-3" id='ebtn'>
                   
                   <MDBCardText  onClick={() => {
               setVaryingState('@fo');
