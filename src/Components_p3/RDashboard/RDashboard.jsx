@@ -197,7 +197,7 @@ export default function RDashboard () {
             <MDBCardBody className="p-0">
               <MDBListGroup flush className="rounded-3">
                
-                <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3" id='ebtn'>
+                <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3" >
                 <i class="fa-solid fa-file-invoice"></i>
                   <MDBCardText>{user[1]?.resident_info?.fatoras?.length}</MDBCardText>
                 </MDBListGroupItem>
@@ -234,7 +234,7 @@ export default function RDashboard () {
             >تعديل كلمة السر</MDBCardText>
                   </MDBListGroupItem>
 
-                  <MDBListGroupItem className="d-flex justify-content-center align-items-center p-3">
+                  <MDBListGroupItem className="d-flex justify-content-center align-items-center p-3"id='ebtn'>
                   
                   <MDBCardText  onClick={() => {
              

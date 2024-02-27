@@ -270,7 +270,7 @@ export default function MDashboard ( ){
        إشعاراتي
             </MDBCardText>
                   </MDBListGroupItem>
-                  <MDBListGroupItem className="d-flex justify-content-center align-items-center p-3">                 
+                  <MDBListGroupItem className="d-flex justify-content-center align-items-center p-3"id='ebtn'>                 
                     <MDBCardText  onClick={() => {
               setVaryingState('@fo');
               setVaryingModalEdit(!varyingModalEdit); 
