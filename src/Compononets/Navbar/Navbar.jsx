@@ -49,6 +49,7 @@ function goToBootom(){
   
     // const element = document.getElementById('contact');
     window.scrollTo(0, document.body.scrollHeight);
+    convertToC()
 
 }
 
