@@ -26,7 +26,6 @@ export default function Navbar() {
   async function onLogout(){
     setAuthenticated(false)
     setLoading(true)
-    
     await logoute()
     setAccessToken(null)
     setCSRFToken(null)
@@ -46,22 +45,13 @@ export default function Navbar() {
   const convertToO=()=>{
     statusFunc(true)
 }
-function scrollToContact() {
-  const contactSection = document.getElementById('contact');
-  if (contactSection) {
-    contactSection.scrollIntoView({ behavior: 'smooth' });
-  }
+function goToBootom(){
+  
+    // const element = document.getElementById('contact');
+    window.scrollTo(0, document.body.scrollHeight);
+
 }
 
-// {authenticated?alert(user[0].first_name):<></>}
-// if(window.innerWidth >= 992){
-//   let fixed=document.getElementById('fixed')
-//   if(fixed){
-//     fixed.id=''
-//   }
-  
-// }
-  
 
   return (
     <>
@@ -101,17 +91,14 @@ function scrollToContact() {
         
         <li className="nav-item">
             {/*   */}
-            <Link className="nav-link "to={"/contact"}  >الإتصال</Link>
-            {/* <a className="nav-link " href="#contact" onClick={scrollToContact}>الإتصال</a> */}
+            <div className="nav-link "onClick={goToBootom} id='poi' >الإتصال</div>
           </li>
       </ul>
       <form className="d-flex" role="search">
         
-      {authenticated? (<> {user[0]?.is_manager?(<>{user[1]?.ser?.is_has_dwar?<><div className="btn"  id='logout' onClick={() =>{ setVaryingModaLogout(!varyingModaLogout) 
-      convertToC()} } >تسجيل الخروج</div></>:<>
+      {authenticated? (<> {user[0]?.is_manager?(<>{user[1]?.ser?.is_has_dwar?<><div className="btn"  id='logout' onClick={() => setVaryingModaLogout(!varyingModaLogout)} >تسجيل الخروج</div></>:<>
         <Link className="btn btn-primary" id='auth' type="submit" to={'/Resident_Signup'}> إنشاء حساب </Link>
-        <Link className="btn btn-primary" id='auth' type="submit" to={'/Login'}>تسجيل الدخول</Link></>}</>):(<><div className="btn"  id='logout' onClick={() =>{ setVaryingModaLogout(!varyingModaLogout) 
-        convertToC()} } >تسجيل الخروج</div></>)} </>) :
+        <Link className="btn btn-primary" id='auth' type="submit" to={'/Login'}>تسجيل الدخول</Link></>}</>):(<><div className="btn"  id='logout' onClick={() => setVaryingModaLogout(!varyingModaLogout)} >تسجيل الخروج</div></>)} </>) :
         
         (<>
         <Link className="btn btn-primary" id='auth' type="submit" to={'/Resident_Signup'}> إنشاء حساب </Link>
@@ -136,17 +123,14 @@ function scrollToContact() {
           <Link className="nav-link "  to={"/Resident"}>ملفي</Link> 
         </li>)} </>):(<></>)}
         <li className="nav-item">
-            {/*  */}
-            <Link className="nav-link "to={"/contact"}  >الإتصال</Link>
-            {/* <a className="nav-link " href="#contact" onClick={scrollToContact}>الإتصال</a> */}
+            {/* <Link className="nav-link "to={"#contact"}  >الإتصال</Link> */}
+            <div className="nav-link "onClick={goToBootom} id='poi' >الإتصال</div>
           </li>
       </ul>
       <form className="d-flex" role="search">
-      {authenticated? (<> {user[0]?.is_manager?(<>{user[1]?.ser?.is_has_dwar?<><div className="btn"  id='logout' onClick={() =>{ setVaryingModaLogout(!varyingModaLogout) 
-      convertToC()} } >تسجيل الخروج</div></>:<>
+      {authenticated? (<> {user[0]?.is_manager?(<>{user[1]?.ser?.is_has_dwar?<><div className="btn"  id='logout' onClick={() => setVaryingModaLogout(!varyingModaLogout)} >تسجيل الخروج</div></>:<>
         <Link className="btn btn-primary" id='auth' type="submit" to={'/Resident_Signup'}> إنشاء حساب </Link>
-        <Link className="btn btn-primary" id='auth' type="submit" to={'/Login'}>تسجيل الدخول</Link></>}</>):(<><div className="btn"  id='logout' onClick={() =>{ setVaryingModaLogout(!varyingModaLogout) 
-        convertToC()} } >تسجيل الخروج</div></>)} </>) :
+        <Link className="btn btn-primary" id='auth' type="submit" to={'/Login'}>تسجيل الدخول</Link></>}</>):(<><div className="btn"  id='logout' onClick={() => setVaryingModaLogout(!varyingModaLogout)} >تسجيل الخروج</div></>)} </>) :
         
         (<>
         <Link className="btn btn-primary" id='auth' type="submit" to={'/Resident_Signup'}> إنشاء حساب </Link>
@@ -175,17 +159,14 @@ function scrollToContact() {
           <Link className="nav-link "  to={"/Resident"}>ملفي</Link> 
         </li>)} </>):(<></>)}
           <li className="nav-item">
-            {/*  */}
-            <Link className="nav-link "to={"/contact"}  >الإتصال</Link>
-            {/* <a className="nav-link " href="#contact" onClick={scrollToContact}>الإتصال</a> */}
+            {/* <Link className="nav-link "to={"#contact"}  >الإتصال</Link> */}
+            <div className="nav-link "onClick={goToBootom} id='poi' >الإتصال</div>
           </li>
         </ul>
         <form className="d-flex" role="search">
-        {authenticated? (<> {user[0]?.is_manager?(<>{user[1]?.ser?.is_has_dwar?<><div className="btn"  id='logout' onClick={() =>{ setVaryingModaLogout(!varyingModaLogout) 
-        convertToC()} } >تسجيل الخروج</div></>:<>
+        {authenticated? (<> {user[0]?.is_manager?(<>{user[1]?.ser?.is_has_dwar?<><div className="btn"  id='logout' onClick={() => setVaryingModaLogout(!varyingModaLogout)} >تسجيل الخروج</div></>:<>
         <Link className="btn btn-primary" id='auth' type="submit" to={'/Resident_Signup'}> إنشاء حساب </Link>
-        <Link className="btn btn-primary" id='auth' type="submit" to={'/Login'}>تسجيل الدخول</Link></>}</>):(<><div className="btn"  id='logout' onClick={() =>{ setVaryingModaLogout(!varyingModaLogout) 
-        convertToC()} } >تسجيل الخروج</div></>)} </>) :
+        <Link className="btn btn-primary" id='auth' type="submit" to={'/Login'}>تسجيل الدخول</Link></>}</>):(<><div className="btn"  id='logout' onClick={() => setVaryingModaLogout(!varyingModaLogout)} >تسجيل الخروج</div></>)} </>) :
         
         (<>
         <Link className="btn btn-primary" id='auth' type="submit" to={'/Resident_Signup'}> إنشاء حساب </Link>
@@ -208,18 +189,15 @@ function scrollToContact() {
           <Link className="nav-link "  to={"/Resident"}>ملفي</Link> 
         </li>)} </>):(<></>)}
           <li className="nav-item">
-            {/*  */}
-            <Link className="nav-link "to={"/contact"}  >الإتصال</Link>
-            {/* <a className="nav-link " href="#contact" onClick={scrollToContact}>الإتصال</a> */}
+            {/* <Link className="nav-link "to={"#contact"}  >الإتصال</Link> */}
+            <div className="nav-link "onClick={goToBootom} id='poi' >الإتصال</div>
             
           </li>
         </ul>
         <form className="d-flex" role="search">
-        {authenticated? (<> {user[0]?.is_manager?(<>{user[1]?.ser?.is_has_dwar?<><div className="btn"  id='logout' onClick={() =>{ setVaryingModaLogout(!varyingModaLogout) 
-        convertToC()} } >تسجيل الخروج</div></>:<>
+        {authenticated? (<> {user[0]?.is_manager?(<>{user[1]?.ser?.is_has_dwar?<><div className="btn"  id='logout' onClick={() => setVaryingModaLogout(!varyingModaLogout)} >تسجيل الخروج</div></>:<>
         <Link className="btn btn-primary" id='auth' type="submit" to={'/Resident_Signup'}> إنشاء حساب </Link>
-        <Link className="btn btn-primary" id='auth' type="submit" to={'/Login'}>تسجيل الدخول</Link></>}</>):(<><div className="btn"  id='logout' onClick={() =>{ setVaryingModaLogout(!varyingModaLogout) 
-        convertToC()} } >تسجيل الخروج</div></>)} </>) :
+        <Link className="btn btn-primary" id='auth' type="submit" to={'/Login'}>تسجيل الدخول</Link></>}</>):(<><div className="btn"  id='logout' onClick={() => setVaryingModaLogout(!varyingModaLogout)} >تسجيل الخروج</div></>)} </>) :
         
         (<>
         <Link className="btn btn-primary" id='auth' type="submit" to={'/Resident_Signup'}> إنشاء حساب </Link>
