@@ -220,7 +220,8 @@ export default function MyResident() {
              </MDBCard>
 
 
-             <MDBCard className="mb-4 mb-lg-0" >
+             {res?.details?.first_name?(<>{res?.details?.is_real?<>
+              <MDBCard className="mb-4 mb-lg-0" >
               <MDBCardBody className="p-0">
                 <MDBListGroup flush className="rounded-3">
                   
@@ -263,6 +264,7 @@ export default function MyResident() {
                 </MDBListGroup>
               </MDBCardBody>
             </MDBCard>
+      </>:<></>}</>):(<></>)}
 
            </MDBCol>
            <MDBCol lg="8">
