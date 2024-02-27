@@ -6,6 +6,11 @@ $l7morya:#CE292F;
         color:white
     }
 }
+#ebtn{
+    background-color: $zro9ya;
+    color: white;
+    cursor: pointer;
+}
 #mg{
     text-align: center;
     color: green;
@@ -21,6 +26,8 @@ $l7morya:#CE292F;
 }
 #pointer{
     cursor:pointer;
+    text-decoration: none;
+    color: black;
 }
 #bet {
     width: 46%;

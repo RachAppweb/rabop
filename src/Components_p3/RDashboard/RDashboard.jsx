@@ -27,7 +27,7 @@ import { axiosInstance } from '../../FetchTypes/FetchTypes';
 import userpic from '../../Compononets/Assets/user.jpg'
 import Logout from '../../Authentication_Component/Logout/Logout';
 import { useNavigate } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 //   import { Link } from 'react-router-dom'
 export default function RDashboard () {
   //  the user and the accesToken which has been set in the useAuth hook with axiosinstance and logout
@@ -208,7 +208,16 @@ export default function RDashboard () {
           <MDBCard className="mb-4 mb-lg-0">
               <MDBCardBody className="p-0">
                 <MDBListGroup flush className="rounded-3">
+                <MDBListGroupItem className="d-flex justify-content-center align-items-center p-3" id='ebtn'>
+                      <Link className='card-text'
+            to={'/MyManager'}
+            id='pointer'
+          >
+      مسؤول القرية
+            </Link>
                   
+                    
+                  </MDBListGroupItem>
                   <MDBListGroupItem className="d-flex justify-content-center align-items-center p-3" id='ebtn'>
                       <MDBCardText 
             onClick={() => {
@@ -247,8 +256,7 @@ export default function RDashboard () {
                   <MDBListGroupItem className="d-flex justify-content-between align-items-center p-3">
                   
                       <div className='out' onClick={() => setVaryingModaLogout(!varyingModaLogout)}> <i class="fa-solid fa-power-off"> </i></div>
-                   
-                    
+ 
                   </MDBListGroupItem>
                 </MDBListGroup>
               </MDBCardBody>

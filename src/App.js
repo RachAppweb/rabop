@@ -14,6 +14,7 @@ import ResetPassword from "./Authentication_Component/ResetPassword/ResetPasswor
 import SettingPassword from "./Authentication_Component/SettingPassword/SettingPassword";
 import MyResident from "./Components_p3/MDashboard/MyResident";
 import HowToCommponent from "./Components_p2/HowToCommponent/HowToCommponent";
+import MyManager from "./Components_p3/RDashboard/MyManager";
 import React from "react";
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
           />
           <Route path="/MyResident/:id" element={<MyResident />} />
           <Route path="/HowTo" element={<HowToCommponent />} />
+          <Route path="/MyManager" element={<MyManager />} />
         </Routes>
       </HashRouter>
     </div>
