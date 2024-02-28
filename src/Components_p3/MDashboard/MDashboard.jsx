@@ -190,7 +190,7 @@ export default function MDashboard ( ){
     event.preventDefault()
     setLoading(true)
     try{
-     const {data}= await axiosPrivateInstance.put('edi_password/',JSON.stringify({
+     const {data}= await axiosPrivateInstance.put('edit_password/',JSON.stringify({
         old_password,
         new_password
       }))
