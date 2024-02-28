@@ -185,7 +185,7 @@ export default function RDashboard () {
               }
               
               <p className="text-muted mb-1">{user[0]?.first_name} {user[0]?.last_name}</p>
-              <p className="text-muted mb-4"> {user[1]?.resident_info?.the_village}</p>
+              <p className="text-muted mb-4"> {user[0]?.territorial}</p>
               {/* <div className="d-flex justify-content-center mb-2">
                 <MDBBtn>Follow</MDBBtn>
                 <MDBBtn outline className="ms-1">Message</MDBBtn>
@@ -309,7 +309,7 @@ export default function RDashboard () {
                   <MDBCardText>الدوار</MDBCardText>
                 </MDBCol>
                 <MDBCol sm="9">
-                  <MDBCardText className="text-muted">{user[1]?.resident_info?.the_village}</MDBCardText>
+                  <MDBCardText className="text-muted">{user[0]?.territorial}</MDBCardText>
                 </MDBCol>
               </MDBRow>
             </MDBCardBody>

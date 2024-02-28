@@ -125,7 +125,7 @@ export default function MyManager() {
                      <MDBCardText>الدوار</MDBCardText>
                    </MDBCol>
                    <MDBCol sm="9">
-                     <MDBCardText className="text-muted"> {man?.my_manager?.first_name} </MDBCardText>
+                     <MDBCardText className="text-muted"> {man?.my_manager?.territorial} </MDBCardText>
                    </MDBCol>
                  </MDBRow>
                </MDBCardBody>
