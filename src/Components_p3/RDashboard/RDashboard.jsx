@@ -342,7 +342,7 @@ export default function RDashboard () {
         </tr>
         <tr>
           <th  colspan="2"> الإسم الكامل </th> 
-          <td> محمود رضى </td>
+          <td> {user[0]?.first_name} {user[0]?.last_name}</td>
         </tr>
         <tr>  
           <th colspan="2"> التاريخ </th>
